@@ -17,9 +17,7 @@ public class CarController {
 
     @GetMapping(value = "/cars")
     public String printCars(@RequestParam Optional<Integer> count, ModelMap model) {
-
-        int rCount = count.orElse(carService.getMaxAmountPerReq());
-        model.addAttribute("cars", carService.getCars(rCount));
+        model.addAttribute("cars", carService.getCars(count.orElse(5)));
         return "cars";
     }
 }
